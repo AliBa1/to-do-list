@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline;}
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section { display: block;}
+body { line-height: 1;}
+ol,ul { list-style: none;}
+blockquote,q { quotes: none;}
+blockquote:before,blockquote:after,q:before,q:after { content: ''; content: none;}
+table { border-collapse: collapse; border-spacing: 0;}
+
+body {
+    transition: background-color 0.5s;
+    background-color: #ffffff;
+    color: #000000;
+    /* font-family: 'Indie Flower', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+    font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 1.5rem;
+}
+
+body.dark-mode {
+    background-color: #2e2e2e;
+    color: #ffffff;
+}
+
+#content {
+    display: flex;
+    min-height: 100vh;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
+    /* font-family: 'Indie Flower', 'Trebuchet MS'; */
+    margin-top: 1vh;
+    min-width: 170px;
+}
+
+.to-do-list {
+    margin-bottom: 32px;
+}
+
+.task {
+    margin: 16px 0;
+}
+
+.do-by {
+    font-size: 1.2rem;
+    margin-left: 32px;
+}
+
+.add-new-task {
+    display: flex;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    background-color: inherit;
+    color: inherit;
+    margin: 0 auto;
+}
+
+.add-new-task:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.completed-tasks {
+    /* margin-bottom: 100vh; */
+}

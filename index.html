@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="icon" href="images/circle_green_checkmark.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="images/circle_green_checkmark.svg" type="image/x-icon">
+    <title>To Do List</title>
+
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/sidebar.css">
     <link rel="stylesheet" href="styles/footer.css">
 </head>
 <body>
@@ -11,7 +16,7 @@
         <div class="sidebar">
             <h1 class="lists-header">Lists</h1>
             <p class="sidebar-list">2024 Goals</p>
-            <p class="sidebar-list">Basic</p>
+            <p class="sidebar-list selected-list">Basic</p>
             <p class="sidebar-list">School</p>
             <button class="add-new-list">New List +</button>
         </div>
@@ -24,10 +29,12 @@
 
                 <li class="task">
                     <label><input type="checkbox" name="task2"> Do HW </label>
+                    <p class="do-by">do by Today</p>
                 </li>
 
                 <li class="task">
                     <label><input type="checkbox" name="task3"> Sign Up </label>
+                    <p class="do-by">do by 11/26</p>
                 </li>
 
                 <button class="add-new-task">New Task +</button>
