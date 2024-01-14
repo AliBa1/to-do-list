@@ -20,6 +20,10 @@
     font-size: 1.75rem;
 }
 
+.sidebar-list:hover {
+    cursor: pointer;
+}
+
 .selected-list {
     background-color: white;
     border-right: none;

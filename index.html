@@ -40,6 +40,39 @@
                 <button class="add-new-task">New Task +</button>
             </ul>
 
+            <!-- Put the form on the side of new task when it gets clicked -->
+            <form action="#" method="get" class="new-task-form">
+                <label for="task_desc">Task</label>
+                <input type="text" name="task_desc" id="task_desc" required>
+
+                <label for="task_duedate">Do By</label>
+                <input type="date" name="task_duedate" id="task_duedate">
+
+                <fieldset class="task-prio">
+                    <legend>Priority</legend>
+                    
+                    <div>
+                        <label for="high_prio">High</label>
+                        <input type="radio" name="task_prio" id="high_prio" value="high">
+                    </div>
+        
+                    <div>
+                        <label for="medium_prio">Medium</label>
+                        <input type="radio" name="task_prio" id="medium_prio" value="medium">
+                    </div>
+
+                    <div>
+                        <label for="low_prio">Low</label>
+                        <input type="radio" name="task_prio" id="low_prio" value="low">
+                    </div>
+                </fieldset>
+
+                <label for="task_notes">Notes</label>
+                <textarea name="task_notes" id="task_notes" cols="30" rows="10"></textarea>
+
+                <button class="submit-task-btn" type="submit">Add Task</button>
+            </form>
+
             <ul class="completed-tasks">
                 <li class="complete-task">
                     <label><input type="checkbox" name="task5"> Buy clothes </label>
