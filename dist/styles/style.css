@@ -48,6 +48,8 @@ body.dark-mode {
 .do-by {
     font-size: 1.2rem;
     margin-left: 32px;
+    color: red;
+    margin-top: 2px;
 }
 
 .add-new-task {
@@ -67,4 +69,43 @@ body.dark-mode {
 
 .completed-tasks {
     /* margin-bottom: 100vh; */
+    color: inherit;
+}
+
+.new-task-form {
+    display: none;
+    /* display: flex; */
+    flex-direction: column;
+    /* border: 1px red solid; */
+    border-radius: 4px;
+    background-color: rgb(222, 222, 222);
+    font-size: 1rem;
+    padding: 12px;
+}
+
+.new-task-form > input {
+    margin-bottom: 8px;
+}
+
+.task-prio {
+    /* border: 1px blue dashed; */
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+textarea {
+    resize: none;
+}
+
+.submit-task-btn {
+    margin: 0 auto;
+    margin-top: 8px;
+    /* flex: 1; */
+    border-radius: 8px;
+    height: 24px;
+    width: 84px;
+    font-family: inherit;
+    background-color: lightgreen;
+    border-color: lime;
 }
