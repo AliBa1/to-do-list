@@ -73,8 +73,8 @@ body.dark-mode {
 }
 
 .new-task-form {
-    display: none;
-    /* display: flex; */
+    /* display: none; */
+    display: flex;
     flex-direction: column;
     /* border: 1px red solid; */
     border-radius: 4px;
@@ -108,4 +108,8 @@ textarea {
     font-family: inherit;
     background-color: lightgreen;
     border-color: lime;
+}
+
+.hide {
+    display: none;
 }
