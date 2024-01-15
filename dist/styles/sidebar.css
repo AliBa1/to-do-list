@@ -45,3 +45,32 @@
     text-decoration: underline;
     cursor: pointer;
 }
+
+.new-list-form {
+    /* display: none; */
+    display: flex;
+    flex-direction: column;
+    /* border: 1px red solid; */
+    border-radius: 4px;
+    background-color: rgb(243, 243, 243);
+    font-size: 1rem;
+    padding: 12px;
+    margin-top: 8px;
+    margin-right: 8px;
+}
+
+.new-list-form > input {
+    margin-bottom: 8px;
+}
+
+.submit-list-btn {
+    margin: 0 auto;
+    margin-top: 8px;
+    /* flex: 1; */
+    border-radius: 8px;
+    height: 24px;
+    width: 84px;
+    font-family: inherit;
+    background-color: lightgreen;
+    border-color: lime;
+}
