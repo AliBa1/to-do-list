@@ -7,26 +7,100 @@
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("\n\nconsole.log(\"It's working\");\n\n//# sourceURL=webpack://to-do-list/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _modules_display__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modules/display */ \"./src/modules/display.js\");\n\n// setupSite();\nconsole.log(\"It's working\");\n\n//# sourceURL=webpack://to-do-list/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/modules/display.js":
+/*!********************************!*\
+  !*** ./src/modules/display.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   setupSite: () => (/* binding */ setupSite)\n/* harmony export */ });\n/* harmony import */ var _sidebar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./sidebar */ \"./src/modules/sidebar.js\");\n\n\nconst setupSite = () => {\n    (0,_sidebar__WEBPACK_IMPORTED_MODULE_0__.setupSidebar)();\n}\n\n\n\n//# sourceURL=webpack://to-do-list/./src/modules/display.js?");
+
+/***/ }),
+
+/***/ "./src/modules/sidebar.js":
+/*!********************************!*\
+  !*** ./src/modules/sidebar.js ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   setupSidebar: () => (/* binding */ setupSidebar)\n/* harmony export */ });\n// Fix or change the addList logic so that I can add and remove from specific items\nconst contentDiv = document.querySelector('#content');\nconst sidebarDiv = document.createElement('div');\nconst listsUl = document.createElement('ul');\n\nconst setupSidebar = () => {\n    contentDiv.appendChild(sidebarDiv);\n    sidebarDiv.classList.add(\"sidebar\");\n\n    // make list to display lists\n    const listsHeader = document.createElement('h1');\n    listsHeader.classList.add('lists-header');\n    listsHeader.textContent = \"Lists\";\n    sidebarDiv.appendChild(listsHeader);\n\n    sidebarDiv.appendChild(listsUl);\n\n    newList('2024 Goals');\n    newList('Basic');\n    newList('School');\n\n    // button to show form and add a new list\n    const addListBtn = document.createElement('button');\n    addListBtn.classList.add('add-new-list');\n    addListBtn.textContent = \"New List +\";\n    addListBtn.onclick = () => {\n        newListForm.classList.add('new-list-form');\n        newListForm.classList.remove('hide');\n    }\n    sidebarDiv.appendChild(addListBtn);\n\n    const newListForm = document.createElement('form');\n    // newListForm.classList.add('new-list-form');\n    newListForm.classList.add('hide');\n    newListForm.action = '#';\n    newListForm.method = 'get';\n    sidebarDiv.appendChild(newListForm);\n\n    const listNameLabel = document.createElement('label');\n    listNameLabel.htmlFor = \"new_list\";\n    listNameLabel.textContent = \"List Name\";\n    newListForm.appendChild(listNameLabel);\n\n    const listNameInput = document.createElement('input');\n    listNameInput.type = \"text\";\n    listNameInput.name = \"new_list\";\n    listNameInput.id = \"new_list\";\n    listNameInput.required = true;\n    newListForm.appendChild(listNameInput);\n\n    const newListBtn = document.createElement('button');\n    newListBtn.classList.add(\"submit-list-btn\");\n    newListBtn.type = \"submit\";\n    newListBtn.textContent = \"Add List\";\n    newListBtn.onclick = () => {\n        // newListForm.submit();\n        console.log(listNameInput.textContent);\n        newList(listNameInput.textContent);\n    }\n    newListForm.appendChild(newListBtn);\n}\n\nconst newList = (name) => {\n    const listLi = document.createElement('li');\n    listLi.classList.add('sidebar-list');\n    listLi.textContent = name;\n    listsUl.appendChild(listLi);\n    listLi.onclick = () => {\n        listLi.classList.add('selected-list');\n    }\n}\n\n\n\n//# sourceURL=webpack://to-do-list/./src/modules/sidebar.js?");
 
 /***/ })
 
 /******/ 	});
 /************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./src/index.js"]();
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.js");
 /******/ 	
 /******/ })()
 ;
