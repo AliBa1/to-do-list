@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="images/circle_green_checkmark.svg" type="image/x-icon">
-    <link rel="shortcut icon" href="images/circle_green_checkmark.svg" type="image/x-icon">
+    <link rel="icon" href="images/book-check.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="images/book-check.svg" type="image/x-icon">
     <title>To Do List</title>
 
     <link rel="stylesheet" href="styles/style.css">
@@ -20,9 +20,6 @@
                 <li class="sidebar-list selected-list">Basic</li>
                 <li class="sidebar-list">School</li>
             </ul>
-            <!-- <p class="sidebar-list">2024 Goals</p>
-            <p class="sidebar-list selected-list">Basic</p>
-            <p class="sidebar-list">School</p> -->
             <button class="add-new-list">New List +</button>
 
             <form action="#" method="get" class="new-list-form hide">
@@ -35,18 +32,71 @@
 
         <div class="main-content">
             <ul class="to-do-list">
+                <!-- <li class="task">
+                    <label class="custom-checkbox">
+                        <input type="checkbox" name="task1"> Fix checkbox
+                        <div class="checkmark"></div>
+                        <img src="images/tick-mark-icon.svg" alt="Checkmark" class="check-img">
+                    </label>
+                    <img src="images/dots-horizontal.svg" alt="Dots">
+                </li> -->
                 <li class="task">
-                    <label><input type="checkbox" name="task1"> Buy groceries </label>
+                    <input type="checkbox" id="task1" name="task1" class="hidden-checkbox">
+                    <label for="task1" class="custom-checkbox">
+                        <div class="checkmark">
+                            <img src="images/tick-mark-icon.svg" alt="Checkmark" class="check-img">
+                        </div>
+                        <p>Fix checkbox</p>
+                    </label>
+                    
+                    <img src="images/dots-horizontal.svg" alt="Dots" class="option-dots">
                 </li>
 
                 <li class="task">
-                    <label><input type="checkbox" name="task2"> Do HW </label>
-                    <p class="do-by">do by Today</p>
+                    <input type="checkbox" id="task2" name="task2" class="hidden-checkbox">
+                    <label for="task2" class="custom-checkbox">
+                        <div class="checkmark">
+                            <img src="images/tick-mark-icon.svg" alt="Checkmark" class="check-img">
+                        </div>
+                        <p>Buy groceries</p>
+                    </label>
+                    
+                    <img src="images/dots-horizontal.svg" alt="Dots" class="option-dots">
                 </li>
 
                 <li class="task">
-                    <label><input type="checkbox" name="task3"> Sign Up </label>
-                    <p class="do-by">do by 11/26</p>
+                    <input type="checkbox" id="task3" name="task3" class="hidden-checkbox">
+                    <label for="task3" class="custom-checkbox">
+                        <div class="checkmark">
+                            <img src="images/tick-mark-icon.svg" alt="Checkmark" class="check-img">
+                        </div>
+
+                        <div>
+                            <p>Do HW</p>
+                            <p class="do-by">do by Today</p>
+                        </div>
+                        
+                    </label>
+                    
+                    <img src="images/dots-horizontal.svg" alt="Dots" class="option-dots">
+                </li>
+
+
+                <li class="task">
+                    <input type="checkbox" id="task4" name="task4" class="hidden-checkbox">
+                    <label for="task4" class="custom-checkbox">
+                        <div class="checkmark">
+                            <img src="images/tick-mark-icon.svg" alt="Checkmark" class="check-img">
+                        </div>
+
+                        <div>
+                            <p>Sign Up</p>
+                            <p class="do-by">do by 11/26</p>
+                        </div>
+                        
+                    </label>
+                    
+                    <img src="images/dots-horizontal.svg" alt="Dots" class="option-dots">
                 </li>
 
                 <button class="add-new-task">New Task +</button>
@@ -87,7 +137,16 @@
 
             <ul class="completed-tasks">
                 <li class="complete-task">
-                    <label><input type="checkbox" name="task5"> Buy clothes </label>
+                    <input type="checkbox" id="task5" name="task5" class="hidden-checkbox">
+                    <label for="task4" class="custom-checkbox">
+                        <div class="checkmark">
+                            <img src="images/tick-mark-icon.svg" alt="Checkmark" class="check-img">
+                        </div>
+
+                        <div>
+                            <p>Buy Clothes</p>
+                        </div>
+                    </label>
                 </li>
             </ul>
 
