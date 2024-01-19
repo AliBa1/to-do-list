@@ -8,6 +8,11 @@
   font-size: 2rem;
 }
 
+.delete-list {
+  width: 48px;
+  margin-right: 12px;
+}
+
 /* Style for the switch container */
 .light-switch {
     position: relative;
