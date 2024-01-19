@@ -1,4 +1,5 @@
 // Fix or change the addList logic so that I can add and remove from specific items
+import { lists, List } from "./lists";
 const contentDiv = document.querySelector('#content');
 const sidebarDiv = document.createElement('div');
 const listsUl = document.createElement('ul');
@@ -15,9 +16,29 @@ const setupSidebar = () => {
 
     sidebarDiv.appendChild(listsUl);
 
-    newList('2024 Goals');
-    newList('Basic');
-    newList('School');
+    // newList('2024 Goals');
+    // newList('Basic');
+    // newList('School');
+
+    new List("2024 Goals");
+    new List("Basic");
+    new List("School");
+
+    lists.forEach(list => {
+        const listLi = document.createElement('li');
+        listLi.classList.add('sidebar-list');
+        listLi.textContent = list.name;
+        listsUl.appendChild(listLi);
+        
+        listLi.onclick = () => {
+            list.selected = true;
+            if (list.selected) {
+                listLi.classList.add('selected-list');
+            } else {
+                listLi.classList.remove('selected-list');
+            }
+        }
+    });
 
     // button to show form and add a new list
     const addListBtn = document.createElement('button');
@@ -55,19 +76,20 @@ const setupSidebar = () => {
     newListBtn.onclick = () => {
         // newListForm.submit();
         console.log(listNameInput.textContent);
-        newList(listNameInput.textContent);
+        // newList(listNameInput.textContent);
+        new List(listNameInput.textContent);
     }
     newListForm.appendChild(newListBtn);
 }
 
-const newList = (name) => {
-    const listLi = document.createElement('li');
-    listLi.classList.add('sidebar-list');
-    listLi.textContent = name;
-    listsUl.appendChild(listLi);
-    listLi.onclick = () => {
-        listLi.classList.add('selected-list');
-    }
-}
+// const newList = (name) => {
+//     const listLi = document.createElement('li');
+//     listLi.classList.add('sidebar-list');
+//     listLi.textContent = name;
+//     listsUl.appendChild(listLi);
+//     listLi.onclick = () => {
+//         listLi.classList.add('selected-list');
+//     }
+// }
 
 export {setupSidebar}
