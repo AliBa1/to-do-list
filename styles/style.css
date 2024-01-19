@@ -10,15 +10,18 @@ blockquote:before,blockquote:after,q:before,q:after { content: ''; content: none
 table { border-collapse: collapse; border-spacing: 0;}
 
 body {
-    transition: background-color 0.5s;
-    background-color: #ffffff;
-    color: #000000;
+    transition: background-color 0.3s ease;
     /* font-family: 'Indie Flower', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
     font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-size: 1.5rem;
 }
 
-body.dark-mode {
+.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.dark-mode {
     background-color: #2e2e2e;
     color: #ffffff;
 }
@@ -26,6 +29,7 @@ body.dark-mode {
 #content {
     display: flex;
     min-height: 100vh;
+    max-height: 100vh;
 }
 
 .main-content {
@@ -33,7 +37,7 @@ body.dark-mode {
     flex-direction: column;
     font-size: 2rem;
     /* font-family: 'Indie Flower', 'Trebuchet MS'; */
-    margin-top: 1vh;
+    margin-top: 16px;
     min-width: 170px;
 }
 
