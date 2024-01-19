@@ -8,16 +8,16 @@ class Task {
         this.notes;
         this.list;
         this.complete = false;
-        // this.addToTasks();
+        this.addToTasks();
         this.assignIndex();
     }
 
-    // addToTasks() {
-    //     tasks.push(this);
-    // }
+    addToTasks() {
+        tasks.push(this);
+    }
 
     assignIndex() {
-        this.index = lists.length - 1;
+        this.index = tasks.length - 1;
     }
 }
 
