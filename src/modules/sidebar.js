@@ -24,31 +24,17 @@ const setupSidebar = () => {
     new List("Basic");
     new List("School");
 
-    lists.forEach(list => {
-        const listLi = document.createElement('li');
-        listLi.classList.add('sidebar-list');
-        listLi.textContent = list.name;
-        listsUl.appendChild(listLi);
-        
-        listLi.onclick = () => {
-            list.selected = true;
-            if (list.selected) {
-                listLi.classList.add('selected-list');
-            } else {
-                listLi.classList.remove('selected-list');
-            }
-        }
-    });
+    showLists();
 
     // button to show form and add a new list
-    const addListBtn = document.createElement('button');
-    addListBtn.classList.add('add-new-list');
-    addListBtn.textContent = "New List +";
-    addListBtn.onclick = () => {
+    const newListBtn = document.createElement('button');
+    newListBtn.classList.add('add-new-list');
+    newListBtn.textContent = "New List +";
+    newListBtn.onclick = () => {
         newListForm.classList.add('new-list-form');
         newListForm.classList.remove('hide');
     }
-    sidebarDiv.appendChild(addListBtn);
+    sidebarDiv.appendChild(newListBtn);
 
     const newListForm = document.createElement('form');
     // newListForm.classList.add('new-list-form');
@@ -69,17 +55,20 @@ const setupSidebar = () => {
     listNameInput.required = true;
     newListForm.appendChild(listNameInput);
 
-    const newListBtn = document.createElement('button');
-    newListBtn.classList.add("submit-list-btn");
-    newListBtn.type = "submit";
-    newListBtn.textContent = "Add List";
-    newListBtn.onclick = () => {
-        // newListForm.submit();
-        console.log(listNameInput.textContent);
+    const addListBtn = document.createElement('button');
+    addListBtn.classList.add("submit-list-btn");
+    addListBtn.type = "button";
+    addListBtn.textContent = "Add List";
+    addListBtn.onclick = () => {
+        console.log(listNameInput.value);
         // newList(listNameInput.textContent);
-        new List(listNameInput.textContent);
+        new List(listNameInput.value);
+        showLists();
+        listNameInput.value = "";
+        newListForm.classList.remove('new-list-form');
+        newListForm.classList.add('hide');
     }
-    newListForm.appendChild(newListBtn);
+    newListForm.appendChild(addListBtn);
 }
 
 // const newList = (name) => {
@@ -90,6 +79,42 @@ const setupSidebar = () => {
 //     listLi.onclick = () => {
 //         listLi.classList.add('selected-list');
 //     }
+// }
+
+const showLists = () => {
+    while (listsUl.firstChild) {
+        listsUl.removeChild(listsUl.firstChild);
+    }
+    lists.forEach(list => {
+        const listLi = document.createElement('li');
+        listLi.classList.add('sidebar-list');
+        listLi.textContent = list.name;
+        listsUl.appendChild(listLi);
+        
+        listLi.onclick = () => {
+            // currentList = list;
+            // assignCurrentList(list.index, listLi);
+            console.log(list.index);
+            list.selected = true;
+            if (list.selected) {
+                listLi.classList.add('selected-list');
+            } else {
+                listLi.classList.remove('selected-list');
+            }
+        }
+    });
+}
+
+// const assignCurrentList = (indexSelected, liElement) => {
+//     lists.forEach(list => {
+//         if (list.index === indexSelected) {
+//             list.selected = true;
+//             liElement.classList.add('selected-list');
+//         } else {
+//             list.selected = false;
+//             liElement.classList.remove('selected-list');
+//         }
+//     });
 // }
 
 export {setupSidebar}

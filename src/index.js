@@ -1,3 +1,3 @@
 import { setupSite } from "./modules/display";
-// setupSite();
+setupSite();
 console.log("It's working");
