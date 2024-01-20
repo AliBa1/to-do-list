@@ -1,9 +1,10 @@
 // NEXT TIME DO NOT NEED TO PUT ALL HTML INTO JS. JUST PUT NEEDED HTML INTO A DIV
 import { currentList } from "./lists";
-import { tasks, Task } from "./tasks";
+import { tasks, completeTasks, Task } from "./tasks";
 const contentDiv = document.querySelector('#content');
 const mainContentDiv = document.createElement('div');
 const tasksUl = document.createElement('ul');
+const completeTasksUl = document.createElement('ul');
 
 const setupMain = () => {
     contentDiv.appendChild(mainContentDiv);
@@ -20,7 +21,7 @@ const setupMain = () => {
         newTaskForm.classList.add("new-task-form");
         newTaskForm.classList.remove("hide");
     }
-    tasksUl.appendChild(newTaskBtn);
+    mainContentDiv.appendChild(newTaskBtn);
 
     const newTaskForm = document.createElement("form");
     newTaskForm.action = "#";
@@ -130,15 +131,21 @@ const setupMain = () => {
                 break; // Stop iterating once a checked radio button is found
             }
         }
-        new Task(taskNameInput.value, taskDateInput.value, prioValue, taskNotesTextArea.value, currentList);
+        new Task(taskNameInput.value, taskDateInput.value, prioValue, taskNotesTextArea.value, currentList, false);
         showTasks(tasksUl, tasks);
+
+        taskNameInput.value = "";
+        taskNotesTextArea.value = "";
+        newTaskForm.classList.remove("new-task-form");
+        newTaskForm.classList.add("hide");
+
     }
     newTaskForm.appendChild(taskSubmitBtn);
 
-    const completeTasksUl = document.createElement('ul');
     completeTasksUl.classList.add("completed-tasks");
     mainContentDiv.appendChild(completeTasksUl);
-    let completeTasks = [new Task("This is complete", "", "low", "", currentList)];
+    // let completeTasks = [new Task("This is complete", "", "low", "", currentList)];
+    new Task("This is complete", "", "low", "", currentList, true);
     showTasks(completeTasksUl, completeTasks);
 
     const footerDiv = document.createElement('div');
@@ -235,4 +242,4 @@ const showTasks = (Ul, taskList) => {
     });
 }
 
-export {setupMain, showTasks, tasksUl}
+export {setupMain, showTasks, tasksUl, completeTasksUl}

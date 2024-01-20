@@ -1,6 +1,7 @@
 const tasks = [];
+const completeTasks = [];
 class Task {
-    constructor(name, doBy, priority, notes, list) {
+    constructor(name, doBy, priority, notes, list, isComplete) {
         this.name = name;
         this.index;
         this.doBy = doBy;
@@ -8,7 +9,11 @@ class Task {
         this.notes = notes;
         this.list = list;
         this.complete = false;
-        this.addToTasks();
+        if (isComplete) {
+            this.addToCompleteTasks();
+        } else {
+            this.addToTasks();
+        }
         this.assignIndex();
     }
 
@@ -16,9 +21,13 @@ class Task {
         tasks.push(this);
     }
 
+    addToCompleteTasks() {
+        completeTasks.push(this);
+    }
+
     assignIndex() {
         this.index = tasks.length - 1;
     }
 }
 
-export {tasks, Task}
+export {tasks, completeTasks, Task}

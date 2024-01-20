@@ -1,7 +1,7 @@
 // Fix or change the addList logic so that I can add and remove from specific items
 import { lists, currentList, List } from "./lists";
-import { showTasks, tasksUl } from "./mainContent";
-import { tasks } from "./tasks";
+import { showTasks, tasksUl, completeTasksUl } from "./mainContent";
+import { tasks, completeTasks } from "./tasks";
 const contentDiv = document.querySelector('#content');
 const sidebarDiv = document.createElement('div');
 const listsUl = document.createElement('ul');
@@ -108,7 +108,7 @@ const showLists = () => {
         listLi.onclick = () => {
             list.setAsCurrent();
             showTasks(tasksUl, tasks);
-            // showTasks(,)
+            showTasks(completeTasksUl, completeTasks);
             showLists();
 
             // console.log(list.index);
