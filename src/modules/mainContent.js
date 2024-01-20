@@ -46,8 +46,8 @@ const setupMain = () => {
 
     const taskDateInput = document.createElement("input");
     taskDateInput.type = "date";
-    taskDateInput.name = "task_desc";
-    taskDateInput.id = "task_desc";
+    taskDateInput.name = "task_duedate";
+    taskDateInput.id = "task_duedate";
     newTaskForm.appendChild(taskDateInput);
 
     const taskPrioFieldset = document.createElement("fieldset");
@@ -122,21 +122,52 @@ const setupMain = () => {
     taskSubmitBtn.onclick = () => {
         // new Task(taskNameInput.value, taskDateInput.value, "Low", taskNotesTextArea.value, currentList);
         const prioButtons = document.getElementsByName("task_prio");
+        let prioValue;
         for (let i = 0; i < prioButtons.length; i++) {
             if (prioButtons[i].checked) {
-                let prioValue = prioButtons[i].value;
+                prioValue = prioButtons[i].value;
                 break; // Stop iterating once a checked radio button is found
             }
         }
         new Task(taskNameInput.value, taskDateInput.value, prioValue, taskNotesTextArea.value);
+        showTasks(tasksUl, tasks);
     }
     newTaskForm.appendChild(taskSubmitBtn);
 
     const completeTasksUl = document.createElement('ul');
     completeTasksUl.classList.add("completed-tasks");
     mainContentDiv.appendChild(completeTasksUl);
-    let completeTasks = [];
+    let completeTasks = [new Task("This is complete", "", "low", "")];
     showTasks(completeTasksUl, completeTasks);
+
+    const footerDiv = document.createElement('div');
+    footerDiv.classList.add("footer");
+    mainContentDiv.appendChild(footerDiv);
+
+    const trashImg = document.createElement("img");
+    trashImg.src = "images/delete.svg";
+    trashImg.alt = "Delete";
+    trashImg.classList.add("delete-list");
+    footerDiv.appendChild(trashImg);
+
+    // may remove
+    const taskViewP = document.createElement("p");
+    taskViewP.classList.add("task-view");
+    taskViewP.textContent = "Task View: Basic";
+    footerDiv.appendChild(taskViewP);
+
+    // may remove
+    const lightSwitchLabel = document.createElement("p");
+    lightSwitchLabel.classList.add("light-switch");
+    footerDiv.appendChild(lightSwitchLabel);
+
+    const lightSwitchInput = document.createElement("input");
+    lightSwitchInput.type = "checkbox";
+    lightSwitchLabel.appendChild(lightSwitchInput);
+
+    const lightSwitchSpan = document.createElement("span");
+    lightSwitchSpan.classList.add("slider");
+    lightSwitchLabel.appendChild(lightSwitchSpan);
 
 }
 
@@ -155,13 +186,15 @@ const showTasks = (Ul, taskList) => {
 
         const taskInput = document.createElement('input');
         taskInput.type = "checkbox";
-        taskInput.id = task.list.concat(task.index);
-        taskInput.name = task.list.concat(task.index);
+        // const listName = task.list;
+        // taskInput.id = listName.concat(task.index);
+        taskInput.id = "".concat(task.list, task.index);
+        taskInput.name = "".concat(task.list, task.index);
         taskInput.classList.add("hidden-checkbox");
         taskLi.appendChild(taskInput);
 
         const taskLabel = document.createElement("label");
-        taskLabel.for = task.list.concat(task.index);
+        taskLabel.for = "".concat(task.list, task.index);
         taskLabel.classList.add("custom-checkbox");
         taskLi.appendChild(taskLabel);
 
