@@ -1,4 +1,5 @@
 const lists = [];
+let currentList;
 class List {
     constructor(name) {
         this.name = name;
@@ -20,6 +21,10 @@ class List {
     assignIndex() {
         this.index = lists.length - 1;
     }
+
+    setAsCurrent() {
+        currentList = this;
+    }
 }
 
-export {lists, List}
+export {lists, currentList, List}

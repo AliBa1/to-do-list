@@ -1,4 +1,5 @@
 // NEXT TIME DO NOT NEED TO PUT ALL HTML INTO JS. JUST PUT NEEDED HTML INTO A DIV
+import { currentList } from "./lists";
 import { tasks, Task } from "./tasks";
 const contentDiv = document.querySelector('#content');
 const mainContentDiv = document.createElement('div');
@@ -129,7 +130,7 @@ const setupMain = () => {
                 break; // Stop iterating once a checked radio button is found
             }
         }
-        new Task(taskNameInput.value, taskDateInput.value, prioValue, taskNotesTextArea.value);
+        new Task(taskNameInput.value, taskDateInput.value, prioValue, taskNotesTextArea.value, currentList);
         showTasks(tasksUl, tasks);
     }
     newTaskForm.appendChild(taskSubmitBtn);
@@ -137,7 +138,7 @@ const setupMain = () => {
     const completeTasksUl = document.createElement('ul');
     completeTasksUl.classList.add("completed-tasks");
     mainContentDiv.appendChild(completeTasksUl);
-    let completeTasks = [new Task("This is complete", "", "low", "")];
+    let completeTasks = [new Task("This is complete", "", "low", "", currentList)];
     showTasks(completeTasksUl, completeTasks);
 
     const footerDiv = document.createElement('div');
@@ -171,65 +172,67 @@ const setupMain = () => {
 
 }
 
-// START COMPLETED TASKS HERE
-
 const showTasks = (Ul, taskList) => {
     while (Ul.firstChild) {
         Ul.removeChild(Ul.firstChild);
     }
 
     taskList.forEach(task => {
-        // if (task.list == currentList)
-        const taskLi = document.createElement('li');
-        taskLi.classList.add("task");
-        Ul.appendChild(taskLi);
+        console.log(task);
+        if (task.list == currentList) {
+            const taskLi = document.createElement('li');
+            taskLi.classList.add("task");
+            Ul.appendChild(taskLi);
 
-        const taskInput = document.createElement('input');
-        taskInput.type = "checkbox";
-        // const listName = task.list;
-        // taskInput.id = listName.concat(task.index);
-        taskInput.id = "".concat(task.list, task.index);
-        taskInput.name = "".concat(task.list, task.index);
-        taskInput.classList.add("hidden-checkbox");
-        taskLi.appendChild(taskInput);
+            const taskInput = document.createElement('input');
+            taskInput.type = "checkbox";
+            // const listName = task.list;
+            // taskInput.id = listName.concat(task.index);
+            taskInput.id = "".concat(task.list, task.index);
+            taskInput.name = "".concat(task.list, task.index);
+            taskInput.classList.add("hidden-checkbox");
+            taskLi.appendChild(taskInput);
 
-        const taskLabel = document.createElement("label");
-        taskLabel.for = "".concat(task.list, task.index);
-        taskLabel.classList.add("custom-checkbox");
-        taskLi.appendChild(taskLabel);
+            const taskLabel = document.createElement("label");
+            taskLabel.for = "".concat(task.list, task.index);
+            taskLabel.classList.add("custom-checkbox");
+            taskLi.appendChild(taskLabel);
 
-        const checkmarkDiv = document.createElement("div");
-        checkmarkDiv.classList.add("checkmark");
-        taskLabel.appendChild(checkmarkDiv);
+            const checkmarkDiv = document.createElement("div");
+            checkmarkDiv.classList.add("checkmark");
+            taskLabel.appendChild(checkmarkDiv);
 
-        const checkmarkImg = document.createElement("img");
-        checkmarkImg.src = "images/tick-mark-icon.svg";
-        checkmarkImg.alt = "Checkmark";
-        checkmarkImg.classList.add("check-img");
-        checkmarkDiv.appendChild(checkmarkImg);
+            const checkmarkImg = document.createElement("img");
+            checkmarkImg.src = "images/tick-mark-icon.svg";
+            checkmarkImg.alt = "Checkmark";
+            checkmarkImg.classList.add("check-img");
+            checkmarkDiv.appendChild(checkmarkImg);
 
-        const taskName = document.createElement("p");
-        taskName.textContent = task.name;
-        taskLabel.appendChild(taskName);
+            const taskName = document.createElement("p");
+            taskName.textContent = task.name;
+            taskLabel.appendChild(taskName);
 
-        if (task.doBy != null) {
-            const taskNameDateDiv = document.createElement("div");
-            taskLabel.appendChild(taskNameDateDiv);
-            taskLabel.removeChild(taskName);
-            taskNameDateDiv.appendChild(taskName);
+            if (task.doBy != null) {
+                const taskNameDateDiv = document.createElement("div");
+                taskLabel.appendChild(taskNameDateDiv);
+                taskLabel.removeChild(taskName);
+                taskNameDateDiv.appendChild(taskName);
 
-            const taskDoBy = document.createElement("p");
-            taskDoBy.classList.add("do-by");
-            taskDoBy.textContent = "Do by ".concat(task.doBy);
-            taskNameDateDiv.appendChild(taskDoBy);
+                const taskDoBy = document.createElement("p");
+                taskDoBy.classList.add("do-by");
+                taskDoBy.textContent = "Do by ".concat(task.doBy);
+                taskNameDateDiv.appendChild(taskDoBy);
+            }
+
+            const optionDotsImg = document.createElement("img");
+            optionDotsImg.src = "images/dots-horizontal.svg";
+            optionDotsImg.alt = "Dots";
+            optionDotsImg.classList.add("option-dots");
+            taskLi.appendChild(optionDotsImg);
+
         }
-
-        const optionDotsImg = document.createElement("img");
-        optionDotsImg.src = "images/dots-horizontal.svg";
-        optionDotsImg.alt = "Dots";
-        optionDotsImg.classList.add("option-dots");
-        taskLi.appendChild(optionDotsImg);
+        
     });
 }
 
-export {setupMain}
+export {setupMain, showTasks, tasksUl}

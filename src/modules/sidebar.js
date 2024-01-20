@@ -1,5 +1,7 @@
 // Fix or change the addList logic so that I can add and remove from specific items
-import { lists, List } from "./lists";
+import { lists, currentList, List } from "./lists";
+import { showTasks, tasksUl } from "./mainContent";
+import { tasks } from "./tasks";
 const contentDiv = document.querySelector('#content');
 const sidebarDiv = document.createElement('div');
 const listsUl = document.createElement('ul');
@@ -20,9 +22,11 @@ const setupSidebar = () => {
     // newList('Basic');
     // newList('School');
 
+    new List("Default");
     new List("2024 Goals");
     new List("Basic");
     new List("School");
+    lists[0].setAsCurrent();
 
     showLists();
 
@@ -88,36 +92,34 @@ const showLists = () => {
     while (listsUl.firstChild) {
         listsUl.removeChild(listsUl.firstChild);
     }
+
     lists.forEach(list => {
         const listLi = document.createElement('li');
         listLi.classList.add('sidebar-list');
         listLi.textContent = list.name;
         listsUl.appendChild(listLi);
+
+        if (currentList == list) {
+            listLi.classList.add('selected-list');
+        } else {
+            listLi.classList.remove('selected-list');
+        }
         
         listLi.onclick = () => {
-            // currentList = list;
-            // assignCurrentList(list.index, listLi);
-            console.log(list.index);
-            list.selected = true;
-            if (list.selected) {
-                listLi.classList.add('selected-list');
-            } else {
-                listLi.classList.remove('selected-list');
-            }
+            list.setAsCurrent();
+            showTasks(tasksUl, tasks);
+            // showTasks(,)
+            showLists();
+
+            // console.log(list.index);
+            // list.selected = true;
+            // if (list.selected) {
+            //     listLi.classList.add('selected-list');
+            // } else {
+            //     listLi.classList.remove('selected-list');
+            // }
         }
     });
 }
-
-// const assignCurrentList = (indexSelected, liElement) => {
-//     lists.forEach(list => {
-//         if (list.index === indexSelected) {
-//             list.selected = true;
-//             liElement.classList.add('selected-list');
-//         } else {
-//             list.selected = false;
-//             liElement.classList.remove('selected-list');
-//         }
-//     });
-// }
 
 export {setupSidebar}
