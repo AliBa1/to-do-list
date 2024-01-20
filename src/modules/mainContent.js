@@ -10,7 +10,7 @@ const setupMain = () => {
 
     tasksUl.classList.add("to-do-list");
     mainContentDiv.appendChild(tasksUl);
-    showTasks();
+    showTasks(tasksUl, tasks);
 
     const newTaskBtn = document.createElement("button");
     newTaskBtn.classList.add("add-new-task");
@@ -131,20 +131,27 @@ const setupMain = () => {
         new Task(taskNameInput.value, taskDateInput.value, prioValue, taskNotesTextArea.value);
     }
     newTaskForm.appendChild(taskSubmitBtn);
+
+    const completeTasksUl = document.createElement('ul');
+    completeTasksUl.classList.add("completed-tasks");
+    mainContentDiv.appendChild(completeTasksUl);
+    let completeTasks = [];
+    showTasks(completeTasksUl, completeTasks);
+
 }
 
 // START COMPLETED TASKS HERE
 
-const showTasks = () => {
-    while (tasksUl.firstChild) {
-        tasksUl.removeChild(tasksUl.firstChild);
+const showTasks = (Ul, taskList) => {
+    while (Ul.firstChild) {
+        Ul.removeChild(Ul.firstChild);
     }
 
-    tasks.forEach(task => {
+    taskList.forEach(task => {
         // if (task.list == currentList)
         const taskLi = document.createElement('li');
         taskLi.classList.add("task");
-        tasksUl.appendChild(taskLi);
+        Ul.appendChild(taskLi);
 
         const taskInput = document.createElement('input');
         taskInput.type = "checkbox";
