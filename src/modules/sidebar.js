@@ -60,6 +60,9 @@ const setupSidebar = () => {
     addListBtn.type = "button";
     addListBtn.textContent = "Add List";
     addListBtn.onclick = () => {
+        // array.forEach(element => {
+            
+        // });
         console.log(listNameInput.value);
         // newList(listNameInput.textContent);
         new List(listNameInput.value);

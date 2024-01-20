@@ -1,11 +1,11 @@
 const tasks = [];
 class Task {
-    constructor(name) {
+    constructor(name, doBy, priority, notes) {
         this.name = name;
         this.index;
-        this.doBy;
-        this.priority;
-        this.notes;
+        this.doBy = doBy;
+        this.priority = priority;
+        this.notes = notes;
         this.list;
         this.complete = false;
         this.addToTasks();

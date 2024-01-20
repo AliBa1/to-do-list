@@ -73,8 +73,67 @@ const setupMain = () => {
     highPrioInput.value = "high";
     highPrioDiv.appendChild(highPrioInput);
 
-    // START HERE w/ MED PRIO DIV
+    const medPrioDiv = document.createElement("div");
+    taskPrioFieldset.appendChild(medPrioDiv);
+    
+    const medPrioLabel = document.createElement("label");
+    medPrioLabel.for = "medium_prio";
+    medPrioLabel.textContent = "Medium";
+    medPrioDiv.appendChild(medPrioLabel);
+
+    const medPrioInput = document.createElement("input");
+    medPrioInput.type = "radio";
+    medPrioInput.name = "task_prio";
+    medPrioInput.id = "medium_prio";
+    medPrioInput.value = "medium";
+    medPrioDiv.appendChild(medPrioInput);
+
+    const lowPrioDiv = document.createElement("div");
+    taskPrioFieldset.appendChild(lowPrioDiv);
+    
+    const lowPrioLabel = document.createElement("label");
+    lowPrioLabel.for = "low_prio";
+    lowPrioLabel.textContent = "Low";
+    lowPrioDiv.appendChild(lowPrioLabel);
+
+    const lowPrioInput = document.createElement("input");
+    lowPrioInput.type = "radio";
+    lowPrioInput.name = "task_prio";
+    lowPrioInput.id = "low_prio";
+    lowPrioInput.value = "low";
+    lowPrioDiv.appendChild(lowPrioInput);
+
+    const taskNotesLabel = document.createElement('label');
+    taskNotesLabel.for = "task_notes";
+    taskNotesLabel.textContent = "Notes";
+    newTaskForm.appendChild(taskNotesLabel);
+
+    const taskNotesTextArea = document.createElement('textarea');
+    taskNotesTextArea.name = "task_notes";
+    taskNotesTextArea.id = "task_notes";
+    taskNotesTextArea.cols = 30;
+    taskNotesTextArea.rows = 10;
+    newTaskForm.appendChild(taskNotesTextArea);
+
+    const taskSubmitBtn = document.createElement('button');
+    taskSubmitBtn.classList.add("submit-task-btn");
+    taskSubmitBtn.type = "button";
+    taskSubmitBtn.textContent = "Add Task";
+    taskSubmitBtn.onclick = () => {
+        // new Task(taskNameInput.value, taskDateInput.value, "Low", taskNotesTextArea.value, currentList);
+        const prioButtons = document.getElementsByName("task_prio");
+        for (let i = 0; i < prioButtons.length; i++) {
+            if (prioButtons[i].checked) {
+                let prioValue = prioButtons[i].value;
+                break; // Stop iterating once a checked radio button is found
+            }
+        }
+        new Task(taskNameInput.value, taskDateInput.value, prioValue, taskNotesTextArea.value);
+    }
+    newTaskForm.appendChild(taskSubmitBtn);
 }
+
+// START COMPLETED TASKS HERE
 
 const showTasks = () => {
     while (tasksUl.firstChild) {
