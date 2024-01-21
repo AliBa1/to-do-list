@@ -18,10 +18,6 @@ const setupSidebar = () => {
 
     sidebarDiv.appendChild(listsUl);
 
-    // newList('2024 Goals');
-    // newList('Basic');
-    // newList('School');
-
     new List("Default");
     new List("2024 Goals");
     new List("Basic");
@@ -35,8 +31,13 @@ const setupSidebar = () => {
     newListBtn.classList.add('add-new-list');
     newListBtn.textContent = "New List +";
     newListBtn.onclick = () => {
-        newListForm.classList.add('new-list-form');
-        newListForm.classList.remove('hide');
+        if (newListForm.classList.contains('hide')) {
+            newListForm.classList.add('new-list-form');
+            newListForm.classList.remove('hide');
+        } else {
+            newListForm.classList.remove('new-list-form');
+            newListForm.classList.add('hide');
+        }
     }
     sidebarDiv.appendChild(newListBtn);
 
@@ -64,11 +65,7 @@ const setupSidebar = () => {
     addListBtn.type = "button";
     addListBtn.textContent = "Add List";
     addListBtn.onclick = () => {
-        // array.forEach(element => {
-            
-        // });
         console.log(listNameInput.value);
-        // newList(listNameInput.textContent);
         new List(listNameInput.value);
         showLists();
         listNameInput.value = "";
@@ -77,16 +74,6 @@ const setupSidebar = () => {
     }
     newListForm.appendChild(addListBtn);
 }
-
-// const newList = (name) => {
-//     const listLi = document.createElement('li');
-//     listLi.classList.add('sidebar-list');
-//     listLi.textContent = name;
-//     listsUl.appendChild(listLi);
-//     listLi.onclick = () => {
-//         listLi.classList.add('selected-list');
-//     }
-// }
 
 const showLists = () => {
     while (listsUl.firstChild) {
@@ -110,16 +97,10 @@ const showLists = () => {
             showTasks(tasksUl, tasks);
             showTasks(completeTasksUl, completeTasks);
             showLists();
-
-            // console.log(list.index);
-            // list.selected = true;
-            // if (list.selected) {
-            //     listLi.classList.add('selected-list');
-            // } else {
-            //     listLi.classList.remove('selected-list');
-            // }
         }
     });
 }
 
-export {setupSidebar}
+
+
+export {setupSidebar, showLists}

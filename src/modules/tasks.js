@@ -30,4 +30,11 @@ class Task {
     }
 }
 
-export {tasks, completeTasks, Task}
+const removeTask = (taskList, taskIndex) => {
+    taskList.splice(taskIndex, 1);
+    for (let i = taskIndex; i < taskList.length; i++) {
+        taskList[i].index -= 1;
+    }
+}
+
+export {tasks, completeTasks, Task, removeTask}

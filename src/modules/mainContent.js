@@ -1,6 +1,7 @@
 // NEXT TIME DO NOT NEED TO PUT ALL HTML INTO JS. JUST PUT NEEDED HTML INTO A DIV
-import { currentList } from "./lists";
-import { tasks, completeTasks, Task } from "./tasks";
+import { currentList, removeList, lists } from "./lists";
+import { tasks, completeTasks, Task, removeTask } from "./tasks";
+import { showLists } from "./sidebar";
 const contentDiv = document.querySelector('#content');
 const mainContentDiv = document.createElement('div');
 const tasksUl = document.createElement('ul');
@@ -18,8 +19,13 @@ const setupMain = () => {
     newTaskBtn.classList.add("add-new-task");
     newTaskBtn.textContent = "New Task +";
     newTaskBtn.onclick = () => {
-        newTaskForm.classList.add("new-task-form");
-        newTaskForm.classList.remove("hide");
+        if (newTaskForm.classList.contains("hide")) {
+            newTaskForm.classList.add("new-task-form");
+            newTaskForm.classList.remove("hide");
+        } else {
+            newTaskForm.classList.remove("new-task-form");
+            newTaskForm.classList.add("hide");
+        }
     }
     mainContentDiv.appendChild(newTaskBtn);
 
@@ -122,7 +128,6 @@ const setupMain = () => {
     taskSubmitBtn.type = "button";
     taskSubmitBtn.textContent = "Add Task";
     taskSubmitBtn.onclick = () => {
-        // new Task(taskNameInput.value, taskDateInput.value, "Low", taskNotesTextArea.value, currentList);
         const prioButtons = document.getElementsByName("task_prio");
         let prioValue;
         for (let i = 0; i < prioButtons.length; i++) {
@@ -144,7 +149,6 @@ const setupMain = () => {
 
     completeTasksUl.classList.add("completed-tasks");
     mainContentDiv.appendChild(completeTasksUl);
-    // let completeTasks = [new Task("This is complete", "", "low", "", currentList)];
     new Task("This is complete", "", "low", "", currentList, true);
     showTasks(completeTasksUl, completeTasks);
 
@@ -157,25 +161,36 @@ const setupMain = () => {
     trashImg.alt = "Delete";
     trashImg.classList.add("delete-list");
     footerDiv.appendChild(trashImg);
+    trashImg.onclick = () => {
+        const comfirmListDel = window.confirm("Are you sure you want to delete this list (all tasks in list will be removed as well)?");
+        if (comfirmListDel) {
+            removeList(currentList.index);
+            // currentList = lists[0];
+            showLists();
+
+        } else {
+            console.log("Deletion canceled");
+        }
+    }
 
     // may remove
-    const taskViewP = document.createElement("p");
-    taskViewP.classList.add("task-view");
-    taskViewP.textContent = "Task View: Basic";
-    footerDiv.appendChild(taskViewP);
+    // const taskViewP = document.createElement("p");
+    // taskViewP.classList.add("task-view");
+    // taskViewP.textContent = "Task View: Basic";
+    // footerDiv.appendChild(taskViewP);
 
     // may remove
-    const lightSwitchLabel = document.createElement("p");
-    lightSwitchLabel.classList.add("light-switch");
-    footerDiv.appendChild(lightSwitchLabel);
+    // const lightSwitchLabel = document.createElement("p");
+    // lightSwitchLabel.classList.add("light-switch");
+    // footerDiv.appendChild(lightSwitchLabel);
 
-    const lightSwitchInput = document.createElement("input");
-    lightSwitchInput.type = "checkbox";
-    lightSwitchLabel.appendChild(lightSwitchInput);
+    // const lightSwitchInput = document.createElement("input");
+    // lightSwitchInput.type = "checkbox";
+    // lightSwitchLabel.appendChild(lightSwitchInput);
 
-    const lightSwitchSpan = document.createElement("span");
-    lightSwitchSpan.classList.add("slider");
-    lightSwitchLabel.appendChild(lightSwitchSpan);
+    // const lightSwitchSpan = document.createElement("span");
+    // lightSwitchSpan.classList.add("slider");
+    // lightSwitchLabel.appendChild(lightSwitchSpan);
 
 }
 
@@ -185,7 +200,6 @@ const showTasks = (Ul, taskList) => {
     }
 
     taskList.forEach(task => {
-        console.log(task);
         if (task.list == currentList) {
             const taskLi = document.createElement('li');
             taskLi.classList.add("task");
@@ -193,8 +207,6 @@ const showTasks = (Ul, taskList) => {
 
             const taskInput = document.createElement('input');
             taskInput.type = "checkbox";
-            // const listName = task.list;
-            // taskInput.id = listName.concat(task.index);
             taskInput.id = "".concat(task.list, task.index);
             taskInput.name = "".concat(task.list, task.index);
             taskInput.classList.add("hidden-checkbox");
@@ -219,7 +231,7 @@ const showTasks = (Ul, taskList) => {
             taskName.textContent = task.name;
             taskLabel.appendChild(taskName);
 
-            if (task.doBy != null) {
+            if (task.doBy != '') {
                 const taskNameDateDiv = document.createElement("div");
                 taskLabel.appendChild(taskNameDateDiv);
                 taskLabel.removeChild(taskName);
@@ -231,15 +243,32 @@ const showTasks = (Ul, taskList) => {
                 taskNameDateDiv.appendChild(taskDoBy);
             }
 
-            const optionDotsImg = document.createElement("img");
-            optionDotsImg.src = "images/dots-horizontal.svg";
-            optionDotsImg.alt = "Dots";
-            optionDotsImg.classList.add("option-dots");
-            taskLi.appendChild(optionDotsImg);
+            // const optionDotsImg = document.createElement("img");
+            // optionDotsImg.src = "images/dots-horizontal.svg";
+            // optionDotsImg.alt = "Dots";
+            // optionDotsImg.classList.add("option-dots");
+            // taskLi.appendChild(optionDotsImg);
+
+            const removeTaskImg = document.createElement("img");
+            removeTaskImg.src = "images/close.svg";
+            removeTaskImg.alt = "Remove";
+            removeTaskImg.classList.add("remove-task-img");
+            taskLi.appendChild(removeTaskImg);
+            removeTaskImg.onclick = () => {
+                const comfirmTaskDel = window.confirm("Are you sure you want to delete this task?");
+                if (comfirmTaskDel) {
+                    removeTask(taskList, task.index);
+                    showTasks(Ul, taskList);
+                } else {
+                    console.log("Deletion canceled");
+                }
+            }
 
         }
         
     });
 }
+
+
 
 export {setupMain, showTasks, tasksUl, completeTasksUl}

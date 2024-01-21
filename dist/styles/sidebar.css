@@ -39,6 +39,7 @@
     background-color: inherit;
     color: inherit;
     margin: 0 auto;
+    margin-top: 4px;
 }
 
 .add-new-list:hover {

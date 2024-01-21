@@ -27,4 +27,11 @@ class List {
     }
 }
 
-export {lists, currentList, List}
+const removeList = (listIndex) => {
+    lists.splice(listIndex, 1);
+    for (let i = listIndex; i < listIndex.length; i++) {
+        listIndex[i].index -= 1;
+    }
+}
+
+export {lists, currentList, List, removeList}
