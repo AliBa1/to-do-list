@@ -1,5 +1,5 @@
 // NEXT TIME DO NOT NEED TO PUT ALL HTML INTO JS. JUST PUT NEEDED HTML INTO A DIV
-import { currentList, removeList, lists } from "./lists";
+import { currentList, removeList, } from "./lists";
 import { tasks, completeTasks, Task, removeTask } from "./tasks";
 import { showLists } from "./sidebar";
 const contentDiv = document.querySelector('#content');
