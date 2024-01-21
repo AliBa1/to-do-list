@@ -86,13 +86,21 @@ body {
     /* border: 1px red solid; */
 }
 
-.task > img {
+/* .task > img {
     width: 32px;
     margin-left: 16px;
-    /* margin-bottom: 0px; */
-    /* border: 1px blue solid; */
-    /* margin: auto 0; */
+} */
+
+.remove-task-img {
+    display: none;
+    width: 28px;
+    margin-left: 16px;
 }
+
+.task:hover .remove-task-img {
+    display: block;
+}
+
 
 .do-by {
     font-size: 1.2rem;
@@ -102,13 +110,16 @@ body {
 }
 
 .add-new-task {
-    display: flex;
+    /* display: flex; */
     border: none;
     font-family: inherit;
     font-size: inherit;
     background-color: inherit;
     color: inherit;
-    margin: 0 auto;
+    /* margin: 0 auto; */
+    /* margin: 0; */
+    width: 200px;
+    /* border: 1px red solid; */
 }
 
 .add-new-task:hover {
