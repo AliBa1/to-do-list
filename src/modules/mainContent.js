@@ -136,7 +136,18 @@ const setupMain = () => {
                 break; // Stop iterating once a checked radio button is found
             }
         }
-        new Task(taskNameInput.value, taskDateInput.value, prioValue, taskNotesTextArea.value, currentList, false);
+
+        if (taskDateInput.value != ''){
+            var dateObject = new Date(taskDateInput.value);
+            var options = { year: 'numeric', month: 'long', day: 'numeric'};
+            var formatter = new Intl.DateTimeFormat('en-US', options);
+            var formattedDate = formatter.format(dateObject);
+            // var formattedDate = dateObject.toLocaleString();
+            console.log(formattedDate);
+            new Task(taskNameInput.value, formattedDate, prioValue, taskNotesTextArea.value, currentList, false);
+        } else {
+            new Task(taskNameInput.value, taskDateInput.value, prioValue, taskNotesTextArea.value, currentList, false);
+        }
         showTasks(tasksUl, tasks);
 
         taskNameInput.value = "";
@@ -288,7 +299,8 @@ const showTasks = (Ul, taskList) => {
                     taskDoBy.style.color = 'gray';
                     console.log(task.priority);
                 }
-                taskDoBy.textContent = "Do by ".concat(task.doBy);
+                const formattedDate = task.doBy.toLocaleString();
+                taskDoBy.textContent = "Do by ".concat(formattedDate);
                 taskNameDateDiv.appendChild(taskDoBy);
             }
 
