@@ -280,8 +280,8 @@ const showTasks = (Ul, taskList) => {
                 taskDoBy.classList.add("do-by");
                 if (task.priority == "low") {
                     taskDoBy.style.color = 'gray';
-                } else if (task.priority == "hedium") {
-                    taskDoBy.style.color = 'yellow';
+                } else if (task.priority == "medium") {
+                    taskDoBy.style.color = 'gold';
                 } else if (task.priority == "high") {
                     taskDoBy.style.color = 'red';
                 } else {
