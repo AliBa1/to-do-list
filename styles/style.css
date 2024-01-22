@@ -109,6 +109,11 @@ body {
     margin-top: 2px;
 }
 
+.notes-header, .task-notes {
+    font-size: 1.2rem;
+    margin-top: 2px;
+}
+
 .add-new-task {
     /* display: flex; */
     border: none;
