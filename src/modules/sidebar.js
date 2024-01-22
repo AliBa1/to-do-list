@@ -19,9 +19,9 @@ const setupSidebar = () => {
     sidebarDiv.appendChild(listsUl);
 
     new List("Default");
-    new List("2024 Goals");
-    new List("Basic");
-    new List("School");
+    // new List("2024 Goals");
+    // new List("Basic");
+    // new List("School");
     lists[0].setAsCurrent();
 
     showLists();
@@ -67,6 +67,7 @@ const setupSidebar = () => {
     addListBtn.onclick = () => {
         console.log(listNameInput.value);
         new List(listNameInput.value);
+        lists[lists.length-1].setAsCurrent();
         showLists();
         listNameInput.value = "";
         newListForm.classList.remove('new-list-form');

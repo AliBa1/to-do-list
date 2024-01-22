@@ -1,5 +1,5 @@
 // NEXT TIME DO NOT NEED TO PUT ALL HTML INTO JS. JUST PUT NEEDED HTML INTO A DIV
-import { currentList, removeList, } from "./lists";
+import { currentList, removeList, lists} from "./lists";
 import { tasks, completeTasks, Task, removeTask } from "./tasks";
 import { showLists } from "./sidebar";
 const contentDiv = document.querySelector('#content');
@@ -149,7 +149,7 @@ const setupMain = () => {
 
     completeTasksUl.classList.add("completed-tasks");
     mainContentDiv.appendChild(completeTasksUl);
-    new Task("This is complete", "", "low", "", currentList, true);
+    // new Task("This is complete", "", "low", "", currentList, true);
     showTasks(completeTasksUl, completeTasks);
 
     const footerDiv = document.createElement('div');
@@ -165,7 +165,20 @@ const setupMain = () => {
         const comfirmListDel = window.confirm("Are you sure you want to delete this list (all tasks in list will be removed as well)?");
         if (comfirmListDel) {
             removeList(currentList.index);
+            tasks.forEach(task => {
+                if (task.list == currentList.name) {
+                    task.removeTask(tasks, task.index);
+                }
+            });
+            completeTasks.forEach(task => {
+                if (task.list == currentList.name) {
+                    task.removeTask(completeTasks, task.index);
+                }
+            });
             // currentList = lists[0];
+            if (lists.length-1 > -1) {
+                lists[lists.length-1].setAsCurrent();
+            }
             showLists();
 
         } else {
@@ -212,6 +225,32 @@ const showTasks = (Ul, taskList) => {
             taskInput.classList.add("hidden-checkbox");
             taskLi.appendChild(taskInput);
 
+            if (task.complete === true) {
+                taskInput.checked = true;
+            } else {
+                taskInput.checked = false;
+            }
+
+            taskInput.addEventListener('change', () => {
+                if (taskInput.checked) {
+                    console.log(task.name + " checked");
+                    task.complete = true;
+                    removeTask (tasks, task.index);
+                    task.addToCompleteTasks();
+                    task.assignIndex();
+                    showTasks(tasksUl, tasks);
+                    showTasks(completeTasksUl, completeTasks);
+                } else {
+                    console.log(task.name + " unchecked");
+                    task.complete = false;
+                    removeTask (completeTasks, task.index);
+                    task.addToTasks();
+                    task.assignIndex();
+                    showTasks(tasksUl, tasks);
+                    showTasks(completeTasksUl, completeTasks);
+                }
+            })
+
             const taskLabel = document.createElement("label");
             taskLabel.for = "".concat(task.list, task.index);
             taskLabel.classList.add("custom-checkbox");
@@ -239,6 +278,16 @@ const showTasks = (Ul, taskList) => {
 
                 const taskDoBy = document.createElement("p");
                 taskDoBy.classList.add("do-by");
+                if (task.priority == "low") {
+                    taskDoBy.style.color = 'gray';
+                } else if (task.priority == "hedium") {
+                    taskDoBy.style.color = 'yellow';
+                } else if (task.priority == "high") {
+                    taskDoBy.style.color = 'red';
+                } else {
+                    taskDoBy.style.color = 'gray';
+                    console.log(task.priority);
+                }
                 taskDoBy.textContent = "Do by ".concat(task.doBy);
                 taskNameDateDiv.appendChild(taskDoBy);
             }

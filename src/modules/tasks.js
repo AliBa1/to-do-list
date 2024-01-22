@@ -8,8 +8,8 @@ class Task {
         this.priority = priority;
         this.notes = notes;
         this.list = list;
-        this.complete = false;
-        if (isComplete) {
+        this.complete = isComplete;
+        if (this.complete) {
             this.addToCompleteTasks();
         } else {
             this.addToTasks();
@@ -26,7 +26,11 @@ class Task {
     }
 
     assignIndex() {
-        this.index = tasks.length - 1;
+        if (this.complete) {
+            this.index = completeTasks.length - 1;
+        } else {
+            this.index = tasks.length - 1;
+        }
     }
 }
 
