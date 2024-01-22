@@ -304,7 +304,7 @@ const showTasks = (Ul, taskList) => {
                 taskNameDateDiv.appendChild(taskDoBy);
             }
 
-
+            // FIX HERE ************************************************************
             const taskNotesDiv = document.createElement("div");
             const notesHeader = document.createElement("h1");
             notesHeader.classList.add('notes-header');
