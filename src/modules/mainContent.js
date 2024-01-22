@@ -304,6 +304,27 @@ const showTasks = (Ul, taskList) => {
                 taskNameDateDiv.appendChild(taskDoBy);
             }
 
+
+            const taskNotesDiv = document.createElement("div");
+            const notesHeader = document.createElement("h1");
+            notesHeader.classList.add('notes-header');
+            notesHeader.textContent = "Notes";
+            taskNotesDiv.appendChild(notesHeader);
+
+            const taskNotes = document.createElement("p");
+            taskNotes.classList.add('task-notes');
+            taskNotes.textContent = task.notes;
+            taskNotesDiv.appendChild(taskNotes);
+
+            taskLabel.onclick = () => {
+                task.showNotes = !task.showNotes;
+                if (task.showNotes) {
+                    taskLabel.appendChild(taskNotesDiv);
+                } else {
+                    taskLabel.removeChild(taskNotesDiv);
+                }
+            }
+
             // const optionDotsImg = document.createElement("img");
             // optionDotsImg.src = "images/dots-horizontal.svg";
             // optionDotsImg.alt = "Dots";

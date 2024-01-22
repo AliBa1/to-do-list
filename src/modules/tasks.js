@@ -9,6 +9,7 @@ class Task {
         this.notes = notes;
         this.list = list;
         this.complete = isComplete;
+        this.showNotes = false;
         if (this.complete) {
             this.addToCompleteTasks();
         } else {
