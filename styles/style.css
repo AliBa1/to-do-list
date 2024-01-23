@@ -111,7 +111,8 @@ body {
 
 .notes-header, .task-notes {
     font-size: 1.2rem;
-    margin-top: 2px;
+    margin-top: 4px;
+    color: #2c2c2c;
 }
 
 .add-new-task {
