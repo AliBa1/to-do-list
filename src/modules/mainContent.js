@@ -1,4 +1,5 @@
 // NEXT TIME DO NOT NEED TO PUT ALL HTML INTO JS. JUST PUT NEEDED HTML INTO A DIV
+// ALSO NEXT TIME USE GRID TO SET UP SITE
 import { currentList, removeList, lists} from "./lists";
 import { tasks, completeTasks, Task, removeTask } from "./tasks";
 import { showLists } from "./sidebar";
@@ -197,6 +198,11 @@ const setupMain = () => {
         }
     }
 
+    const notesHint = document.createElement("p");
+    notesHint.classList.add("notes-hint");
+    notesHint.textContent = "To see notes click on task";
+    footerDiv.appendChild(notesHint);
+
     // may remove
     // const taskViewP = document.createElement("p");
     // taskViewP.classList.add("task-view");
@@ -277,15 +283,18 @@ const showTasks = (Ul, taskList) => {
             checkmarkImg.classList.add("check-img");
             checkmarkDiv.appendChild(checkmarkImg);
 
+            const taskInfoDiv = document.createElement("div");
+            taskLabel.appendChild(taskInfoDiv);
             const taskName = document.createElement("p");
             taskName.textContent = task.name;
-            taskLabel.appendChild(taskName);
+            // taskLabel.appendChild(taskName);
+            taskInfoDiv.appendChild(taskName);
 
             if (task.doBy != '') {
-                const taskNameDateDiv = document.createElement("div");
-                taskLabel.appendChild(taskNameDateDiv);
-                taskLabel.removeChild(taskName);
-                taskNameDateDiv.appendChild(taskName);
+                // const taskNameDateDiv = document.createElement("div");
+                // taskLabel.appendChild(taskNameDateDiv);
+                // taskLabel.removeChild(taskName);
+                // taskNameDateDiv.appendChild(taskName);
 
                 const taskDoBy = document.createElement("p");
                 taskDoBy.classList.add("do-by");
@@ -301,14 +310,15 @@ const showTasks = (Ul, taskList) => {
                 }
                 const formattedDate = task.doBy.toLocaleString();
                 taskDoBy.textContent = "Do by ".concat(formattedDate);
-                taskNameDateDiv.appendChild(taskDoBy);
+                // taskNameDateDiv.appendChild(taskDoBy);
+                taskInfoDiv.appendChild(taskDoBy);
             }
 
-            // FIX HERE ************************************************************
             const taskNotesDiv = document.createElement("div");
             const notesHeader = document.createElement("h1");
             notesHeader.classList.add('notes-header');
-            notesHeader.textContent = "Notes";
+            notesHeader.textContent = "Notes:";
+            notesHeader.style.textDecoration = "underline";
             taskNotesDiv.appendChild(notesHeader);
 
             const taskNotes = document.createElement("p");
@@ -319,9 +329,11 @@ const showTasks = (Ul, taskList) => {
             taskLabel.onclick = () => {
                 task.showNotes = !task.showNotes;
                 if (task.showNotes) {
-                    taskLabel.appendChild(taskNotesDiv);
+                    // taskLabel.appendChild(taskNotesDiv);
+                    taskInfoDiv.appendChild(taskNotesDiv);
                 } else {
-                    taskLabel.removeChild(taskNotesDiv);
+                    // taskLabel.removeChild(taskNotesDiv);
+                    taskInfoDiv.removeChild(taskNotesDiv);
                 }
             }
 

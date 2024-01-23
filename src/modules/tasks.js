@@ -1,3 +1,4 @@
+import { saveData } from "./storage";
 const tasks = [];
 const completeTasks = [];
 class Task {
@@ -20,10 +21,12 @@ class Task {
 
     addToTasks() {
         tasks.push(this);
+        saveData();
     }
 
     addToCompleteTasks() {
         completeTasks.push(this);
+        saveData();
     }
 
     assignIndex() {
@@ -40,6 +43,9 @@ const removeTask = (taskList, taskIndex) => {
     for (let i = taskIndex; i < taskList.length; i++) {
         taskList[i].index -= 1;
     }
+    saveData();
 }
+
+
 
 export {tasks, completeTasks, Task, removeTask}
