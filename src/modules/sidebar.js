@@ -1,4 +1,3 @@
-// Fix or change the addList logic so that I can add and remove from specific items
 import { lists, currentList, List } from "./lists";
 import { showTasks, tasksUl, completeTasksUl } from "./mainContent";
 import { tasks, completeTasks } from "./tasks";
@@ -18,10 +17,14 @@ const setupSidebar = () => {
 
     sidebarDiv.appendChild(listsUl);
 
-    new List("Default");
+    // new List("Default");
     // new List("2024 Goals");
     // new List("Basic");
     // new List("School");
+    if (lists.length < 1) {
+        new List("Default");
+    }
+    console.log(lists);
     lists[0].setAsCurrent();
 
     showLists();
@@ -69,6 +72,7 @@ const setupSidebar = () => {
         new List(listNameInput.value);
         lists[lists.length-1].setAsCurrent();
         showLists();
+        showTasks(tasksUl, tasks);
         listNameInput.value = "";
         newListForm.classList.remove('new-list-form');
         newListForm.classList.add('hide');

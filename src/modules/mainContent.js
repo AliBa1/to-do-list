@@ -144,7 +144,6 @@ const setupMain = () => {
             var formatter = new Intl.DateTimeFormat('en-US', options);
             var formattedDate = formatter.format(dateObject);
             // var formattedDate = dateObject.toLocaleString();
-            console.log(formattedDate);
             new Task(taskNameInput.value, formattedDate, prioValue, taskNotesTextArea.value, currentList, false);
         } else {
             new Task(taskNameInput.value, taskDateInput.value, prioValue, taskNotesTextArea.value, currentList, false);
@@ -192,6 +191,7 @@ const setupMain = () => {
                 lists[lists.length-1].setAsCurrent();
             }
             showLists();
+            showTasks(tasksUl, tasks);
 
         } else {
             console.log("Deletion canceled");

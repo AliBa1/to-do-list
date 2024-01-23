@@ -6,7 +6,7 @@ class List {
         this.name = name;
         this.index;
         this.selected = false;
-        this.tasks = [];
+        // this.tasks = [];
         this.addToLists();
         this.assignIndex();
     }

@@ -1,9 +1,9 @@
 import { setupSidebar } from "./sidebar";
 import { setupMain } from "./mainContent";
-import { setData } from "./storage";
+import { loadData } from "./storage";
 
 const setupSite = () => {
-    setData();
+    loadData();
     setupSidebar();
     setupMain();
 }
