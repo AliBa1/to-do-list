@@ -1,10 +1,8 @@
-import { lists, currentList } from "./lists"
-import { tasks, completeTasks } from "./tasks";
+import { lists, currentList, List } from "./lists"
+import { tasks, completeTasks, Task } from "./tasks";
 
 const saveData = () => {
-    localStorage.clear();
     localStorage.lists = JSON.stringify(lists);
-    localStorage.currentList = JSON.stringify(currentList);
     localStorage.tasks = JSON.stringify(tasks);
     localStorage.completeTasks = JSON.stringify(completeTasks);
 
@@ -12,16 +10,20 @@ const saveData = () => {
 }
 
 const loadData = () => {
-    // const savedLists = JSON.parse(localStorage.getItem("lists"));
-    // const savedCurrentList = JSON.parse(localStorage.getItem("currentList"));
+    const savedLists = JSON.parse(localStorage.getItem("lists"));
     const savedTasks = JSON.parse(localStorage.getItem("tasks"));
-    // const savedCompleteTasks = JSON.parse(localStorage.getItem("completeTasks"));
+    const savedCompleteTasks = JSON.parse(localStorage.getItem("completeTasks"));
 
-    // if (savedLists) lists.push(...savedLists);
-    // if (savedCurrentList) currentList = savedCurrentList;
-    if (savedTasks) tasks.push(...savedTasks);
-    console.log(tasks);
-    // if (savedCompleteTasks) completeTasks.push(...savedCompleteTasks);
+    savedLists.forEach(list => {
+        new List(list.name);
+    });
+    savedTasks.forEach(task => {
+        new Task(task.name, task.doBy, task.priority, task.notes, task.list, task.complete);
+    });
+    savedCompleteTasks.forEach(task => {
+        console.log(task);
+        new Task(task.name, task.doBy, task.priority, task.notes, task.list, task.complete);
+    });
 }
 
 export {saveData, loadData}

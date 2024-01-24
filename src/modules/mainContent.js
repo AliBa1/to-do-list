@@ -230,7 +230,8 @@ const showTasks = (Ul, taskList) => {
     }
 
     taskList.forEach(task => {
-        if (task.list == currentList) {
+        // if (task.list == currentList) {
+        if (task.listIndex == currentList.index) {
             const taskLi = document.createElement('li');
             taskLi.classList.add("task");
             Ul.appendChild(taskLi);

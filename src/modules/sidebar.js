@@ -24,7 +24,7 @@ const setupSidebar = () => {
     if (lists.length < 1) {
         new List("Default");
     }
-    console.log(lists);
+    console.log(lists[0]);
     lists[0].setAsCurrent();
 
     showLists();

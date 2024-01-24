@@ -9,6 +9,7 @@ class Task {
         this.priority = priority;
         this.notes = notes;
         this.list = list;
+        this.listIndex = list.index;
         this.complete = isComplete;
         this.showNotes = false;
         if (this.complete) {
