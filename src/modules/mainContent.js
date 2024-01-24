@@ -192,6 +192,7 @@ const setupMain = () => {
             }
             showLists();
             showTasks(tasksUl, tasks);
+            showTasks(completeTasksUl, completeTasks);
 
         } else {
             console.log("Deletion canceled");

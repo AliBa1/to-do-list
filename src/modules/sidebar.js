@@ -72,6 +72,7 @@ const setupSidebar = () => {
         lists[lists.length-1].setAsCurrent();
         showLists();
         showTasks(tasksUl, tasks);
+        showTasks(completeTasksUl, completeTasks);
         listNameInput.value = "";
         newListForm.classList.remove('new-list-form');
         newListForm.classList.add('hide');
