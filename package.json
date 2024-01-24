@@ -4,7 +4,8 @@
   "description": "Making a to do list using object oriented programming in JS as well as NPM, Webpack, HTML, and CSS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "github-pages": "git subtree push --prefix dist origin gh-pages"
   },
   "keywords": [],
   "author": "",
