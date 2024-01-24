@@ -14,9 +14,13 @@ const loadData = () => {
     const savedTasks = JSON.parse(localStorage.getItem("tasks"));
     const savedCompleteTasks = JSON.parse(localStorage.getItem("completeTasks"));
 
-    savedLists.forEach(list => {
-        new List(list.name);
-    });
+    if (savedLists.length < 1) {
+        new List("Default");
+    } else {
+        savedLists.forEach(list => {
+            new List(list.name);
+        });
+    }
     savedTasks.forEach(task => {
         new Task(task.name, task.doBy, task.priority, task.notes, task.list, task.complete);
     });
