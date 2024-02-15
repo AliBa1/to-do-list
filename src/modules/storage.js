@@ -21,13 +21,19 @@ const loadData = () => {
             new List(list.name);
         });
     }
-    savedTasks.forEach(task => {
-        new Task(task.name, task.doBy, task.priority, task.notes, task.list, task.complete);
-    });
-    savedCompleteTasks.forEach(task => {
-        console.log(task);
-        new Task(task.name, task.doBy, task.priority, task.notes, task.list, task.complete);
-    });
+
+    if (savedTasks != null) {
+        savedTasks.forEach(task => {
+            new Task(task.name, task.doBy, task.priority, task.notes, task.list, task.complete);
+        });
+    }
+
+    if (savedCompleteTasks != null) {
+        savedCompleteTasks.forEach(task => {
+            console.log(task);
+            new Task(task.name, task.doBy, task.priority, task.notes, task.list, task.complete);
+        });
+    }
 }
 
 export {saveData, loadData}
